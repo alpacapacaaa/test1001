@@ -9,7 +9,7 @@ export default function Login({ onToken }) {
   async function onSubmit(e) {
     e.preventDefault()
     try {
-      const data = await login(username, password)
+      const data = await login(username.trim(), password)
       onToken(data.token)
       setMessage('로그인 성공. 토큰을 받았습니다.')
     } catch (err) {
