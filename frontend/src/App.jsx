@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Signup from './pages/Signup.jsx'
 import Login from './pages/Login.jsx'
 import Me from './pages/Me.jsx'
@@ -6,7 +6,12 @@ import Me from './pages/Me.jsx'
 // 화면 세 개(회원가입 / 로그인 / 내 정보)를 버튼으로 오가는 아주 단순한 앱
 export default function App() {
   const [page, setPage] = useState('login')
-  const [token, setToken] = useState('')
+  const [token, setToken] = useState(() => localStorage.getItem('token') || '')
+
+  useEffect(() => {
+    if (token) localStorage.setItem('token', token)
+    else localStorage.removeItem('token')
+  }, [token])
 
   return (
     <div style={{ fontFamily: 'sans-serif', maxWidth: 420, margin: '40px auto', padding: 16 }}>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import trim from 'lodash/trim'
 import { signup } from '../api.js'
 
 export default function Signup() {
@@ -10,7 +9,7 @@ export default function Signup() {
   async function onSubmit(e) {
     e.preventDefault()
     try {
-      await signup(trim(username), password)
+      await signup(username.trim(), password)
       setMessage('회원가입 성공')
     } catch (err) {
       setMessage('실패: ' + (err.response?.data?.error || err.message))
